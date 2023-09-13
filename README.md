@@ -15,3 +15,6 @@ cd frontend
 yarn 
 yarn dev
 ```
+
+## 注意
+需要先创建topic才可以新建微博
