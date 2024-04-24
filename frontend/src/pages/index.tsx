@@ -113,7 +113,7 @@ export default function Home() {
           <TopicList value={topicId} onChange={setTopicId} />
         </div>
         <div className="flex-auto space-y-3">
-          {user && (
+          {user && !!topicId && (
             <SendMessage user={user} topicId={topicId} callBack={mutate} />
           )}
           {messages.map((message) => {
@@ -124,7 +124,7 @@ export default function Home() {
               >
                 <div className="flex justify-between items-center mb-3">
                   <span className="font-semibold">
-                    {message.attributes.user?.data?.attributes.username}
+                    {message.attributes.user?.data?.attributes.username || "匿名"}
                   </span>
 
                   <span>{dayjs().to(dayjs(message.attributes.createdAt))}</span>

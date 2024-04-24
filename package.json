@@ -1,0 +1,13 @@
+{
+  "name": "strapi-weibo",
+  "version": "1.0.0",
+  "description": "strapi-weibo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:backend": "cd backend && bun run start",
+    "start:frontend": "cd frontend && bun run dev"
+  },
+  "author": "",
+  "license": "ISC"
+}

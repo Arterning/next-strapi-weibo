@@ -2,6 +2,7 @@ import "../styles/globals.css";
 import "yet-another-react-lightbox/styles.css";
 import type { AppProps } from "next/app";
 import { DefaultSeo } from "next-seo";
+import { Toaster } from "sonner";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -15,6 +16,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           cardType: "summary_large_image",
         }}
       />
+      <Toaster position="top-center"/>
       <Component {...pageProps} />
     </>
   );

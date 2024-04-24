@@ -1,4 +1,5 @@
 import axios, { AxiosRequestConfig } from "axios";
+import { Toaster, toast } from 'sonner'
 
 export const request = axios.create({
   timeout: 5000,
@@ -14,6 +15,17 @@ request.interceptors.request.use(function (config: AxiosRequestConfig) {
 
   return config;
 });
+
+request.interceptors.response.use(
+  (response) => {
+    return response;
+  }, error => {
+    console.log(error);
+    const errorMessage = error.response.data.error.message;
+    // return alert(errorMessage);
+    toast.error(errorMessage);
+  }
+)
 
 export const fetcher = (url: string, params: any) =>
   request.get(url, { params }).then((res) => res.data.data);
