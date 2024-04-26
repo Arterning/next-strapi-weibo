@@ -3,9 +3,10 @@ import React, { useRef, useState } from "react";
 import { sendMessage } from "../lib/message";
 import { upload } from "../lib/request";
 import { User } from "../types/user";
+import { useSWRConfig } from "swr"
+
 
 type Props = {
-  callBack: () => {};
   topicId: number;
   user: User;
 };
@@ -15,10 +16,14 @@ interface ImageData {
   url: string;
 }
 
-export default function SendMessage({ callBack, user, topicId }: Props) {
+export default function SendMessage({ user, topicId }: Props) {
   const ref = useRef<HTMLTextAreaElement | null>(null);
   const [images, setImages] = useState<ImageData[]>([]);
   const [loading, setLoading] = useState(false);
+
+  const { mutate } = useSWRConfig()
+
+
   const handleSendMesage = async () => {
     if (ref.current && ref.current.value) {
       setLoading(true);
@@ -32,7 +37,7 @@ export default function SendMessage({ callBack, user, topicId }: Props) {
         setLoading(false);
         ref.current.value = "";
         setImages([]);
-        callBack();
+        mutate("/api/messages");
       } catch (error) {
         setLoading(false);
       }
